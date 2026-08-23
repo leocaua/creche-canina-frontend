@@ -1,1 +1,24 @@
-<p>login works!</p>
+<main>
+  <div class="card-login">
+    <h1>Bem-vindo de volta</h1>
+    <p>Entre com seu e-mail e senha</p>
+    <form>
+      <label for="email">E-mail</label>
+      <input type="email" placeholder="seu@email.com" name="email" [(ngModel)]="email">
+
+      <label for="senha">Senha</label>
+      <input type="password" placeholder="********" name="senha" [(ngModel)]="senha">
+
+      <div class="opcoes-extras">
+        <label class="checkbox-label">
+          <input type="checkbox"> Lembrar-me
+        </label>
+        <a href="#">Esqueci a senha</a>
+      </div>
+      <button type="button" (click)="fazerLogin()"> Entrar -></button>
+    </form>
+  </div>
+  <p>Ainda não tem conta?
+    <a href="#">Cadastre-se</a>
+  </p>
+</main>
