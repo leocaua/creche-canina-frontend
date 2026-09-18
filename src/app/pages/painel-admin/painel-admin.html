@@ -1,0 +1,199 @@
+<div class="dashboard-container">
+  <aside class="barra-lateral">
+    <div class="marca">
+      <div class="marca-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" /><path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
+      </div>
+      <div class="marca-text">
+        <h2>PetDay</h2>
+        <span>ADMINISTRADOR</span>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/painel-admin" class="nav-item active">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        </span> Painel
+      </a>
+
+      <a href="#" class="nav-item">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </span> Agenda
+      </a>
+
+      <a href="#" class="nav-item">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        </span> Pets
+      </a>
+
+      <a href="#" class="nav-item">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </span> Tutores
+      </a>
+
+      <a href="#" class="nav-item" style="margin-top: 16px;">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </span> N. Agendamento
+      </a>
+    </nav>
+
+    <div class="vagas-widget">
+      <div class="vagas-header">
+        <span>Vagas hoje</span>
+        <strong>8 / 20</strong>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill orange-fill" style="width: 40%;"></div>
+      </div>
+    </div>
+
+    <div class="user-rodape">
+      <div class="user-avatar">A</div>
+      <div class="user-name">Administrador</div>
+      <div class="logout-icon">↩</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-header">
+      <h1>Painel</h1>
+      <div class="header-right">
+        <span class="current-date">qui., 27 de ago. de 2026</span>
+        <div class="notification-badge">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8C827A" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+          <span class="badge-count">2</span>
+        </div>
+        <span class="role-badge">Admin</span>
+      </div>
+    </header>
+
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon orange-light">🐾</div>
+        <div class="metric-value">3</div>
+        <div class="metric-title">Pets Hoje</div>
+        <div class="metric-subtitle">de 20 vagas</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon yellow-light">🔔</div>
+        <div class="metric-value">3</div>
+        <div class="metric-title">Pendentes</div>
+        <div class="metric-subtitle">aguardando ação</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon green-light">📅</div>
+        <div class="metric-value">9</div>
+        <div class="metric-title">Esta Semana</div>
+        <div class="metric-subtitle">agendamentos</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon purple-light">R$</div>
+        <div class="metric-value">R$ 3.840</div>
+        <div class="metric-title">Receita Mês</div>
+        <div class="metric-subtitle">agosto 2026</div>
+      </div>
+    </section>
+
+    <section class="dashboard-layout">
+      <div class="agenda-section">
+        <div class="section-header">
+          <h3>Hoje — 30 de Agosto</h3>
+          <a href="#" class="link-action">Ver agenda ></a>
+        </div>
+
+        <div class="agenda-list">
+          <div class="agenda-item">
+            <div class="agenda-info">
+              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=44&h=44&fit=crop" class="avatar-img" alt="Thor">
+              <div class="agenda-text">
+                <strong>Thor</strong>
+                <span>Ana Beatriz Santos</span>
+              </div>
+            </div>
+            <div class="agenda-actions">
+              <span class="tag-creche">Creche</span>
+              <span class="status-badge success">Confirmado</span>
+            </div>
+          </div>
+
+          <div class="agenda-item">
+            <div class="agenda-info">
+              <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=44&h=44&fit=crop" class="avatar-img" alt="Luna">
+              <div class="agenda-text">
+                <strong>Luna</strong>
+                <span>Ana Beatriz Santos</span>
+              </div>
+            </div>
+            <div class="agenda-actions">
+              <span class="tag-creche">Creche</span>
+              <span class="status-badge success">Confirmado</span>
+            </div>
+          </div>
+
+          <div class="agenda-item">
+            <div class="agenda-info">
+              <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?w=44&h=44&fit=crop" class="avatar-img" alt="Max">
+              <div class="agenda-text">
+                <strong>Max</strong>
+                <span>Carlos Eduardo Lima</span>
+              </div>
+            </div>
+            <div class="agenda-actions">
+              <span class="tag-creche">Creche</span>
+              <span class="status-badge warning">Pendente</span>
+              <button class="action-btn btn-check">✓</button>
+              <button class="action-btn btn-cross">✕</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-panel">
+        <div class="capacity-card">
+          <h3>Capacidade</h3>
+
+          <div class="capacity-row">
+            <div class="capacity-label">
+              <span>Pequeno</span>
+              <strong>3/8</strong>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill orange-fill" style="width: 37%;"></div>
+            </div>
+          </div>
+
+          <div class="capacity-row">
+            <div class="capacity-label">
+              <span>Médio</span>
+              <strong>2/6</strong>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill green-fill" style="width: 33%;"></div>
+            </div>
+          </div>
+
+          <div class="capacity-row">
+            <div class="capacity-label">
+              <span>Grande</span>
+              <strong>3/6</strong>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill blue-fill" style="width: 50%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-novo-agendamento">+ Novo Agendamento</button>
+      </div>
+
+    </section>
+  </main>
+</div>
