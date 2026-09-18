@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,21 +12,23 @@ import { AuthService } from '../../services/auth';
 })
 export class Login {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   email = '';
   senha = '';
 
   fazerLogin() {
     const pacote = {
-      login: this.email,
+      email: this.email,
       senha: this.senha
     };
 
     this.authService.fazerLoginApi(pacote).subscribe({
       next: (resposta) => {
-        alert('Login aprovado pelo Backend! \nResposta:' + JSON.stringify(resposta));
-      },
+        localStorage.setItem('token', resposta);
+
+        this.router.navigate(['/home']);
+            },
       error: (erro) => {
         alert('Erro ao tentar logar. Verifique o console ou ligue o backend!');
         console.error('Detalhes do erro:', erro);

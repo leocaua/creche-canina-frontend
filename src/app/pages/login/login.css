@@ -1,70 +1,181 @@
-main {
-  min-height: 100vh;
-  background-color: #f8f5f2;
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
+.login-wrapper {
+  min-height: 100vh;
+  background-color: #1C1208;
+  background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cg transform='translate(40,40) rotate(15) scale(1.5)'%3E%3Cellipse cx='5.5' cy='5.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='10' cy='3.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='14.5' cy='4' rx='1.7' ry='2.4'/%3E%3Cellipse cx='18.5' cy='6.5' rx='1.7' ry='2.4'/%3E%3Cpath d='M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z'/%3E%3C/g%3E%3Cg transform='translate(250,80) rotate(-25) scale(2)'%3E%3Cellipse cx='5.5' cy='5.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='10' cy='3.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='14.5' cy='4' rx='1.7' ry='2.4'/%3E%3Cellipse cx='18.5' cy='6.5' rx='1.7' ry='2.4'/%3E%3Cpath d='M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z'/%3E%3C/g%3E%3Cg transform='translate(80,260) rotate(45) scale(1.2)'%3E%3Cellipse cx='5.5' cy='5.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='10' cy='3.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='14.5' cy='4' rx='1.7' ry='2.4'/%3E%3Cellipse cx='18.5' cy='6.5' rx='1.7' ry='2.4'/%3E%3Cpath d='M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z'/%3E%3C/g%3E%3Cg transform='translate(300,280) rotate(-10) scale(1.6)'%3E%3Cellipse cx='5.5' cy='5.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='10' cy='3.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='14.5' cy='4' rx='1.7' ry='2.4'/%3E%3Cellipse cx='18.5' cy='6.5' rx='1.7' ry='2.4'/%3E%3Cpath d='M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z'/%3E%3C/g%3E%3Cg transform='translate(180,160) rotate(60) scale(1.8)'%3E%3Cellipse cx='5.5' cy='5.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='10' cy='3.5' rx='1.7' ry='2.4'/%3E%3Cellipse cx='14.5' cy='4' rx='1.7' ry='2.4'/%3E%3Cellipse cx='18.5' cy='6.5' rx='1.7' ry='2.4'/%3E%3Cpath d='M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
 
-  flex-direction: column;
-  gap: 20px;
-  font-family: Arial, sans-serif;
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.brand-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  background-color: #B85A10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 28px;
+}
+
+.header-section h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 6px;
+}
+
+.header-section p {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  margin: 0;
 }
 
 .card-login {
-  background-color: #FFFFFF;
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  backdrop-filter: blur(8px);
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 24px;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: rgba(255, 255, 255, 0.70);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 7px;
 }
 
 input[type="email"],
 input[type="password"] {
-  padding: 12px;
-  border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 16px;
+  padding: 11px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.07);
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
   width: 100%;
   box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s;
 }
 
-button {
-  background-color: #e37222;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #B85A10;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .opcoes-extras {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-}
-
-.opcoes-extras a {
-  text-decoration: none;
-  color: #e37222;
-  font-weight: bold;
+  justify-content: space-between;
 }
 
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: #B85A10;
+  cursor: pointer;
+}
+
+.opcoes-extras a {
+  color: #D4722A;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  background-color: #B85A10;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.arrow {
+  font-size: 18px;
+}
+
+.footer-section {
+  text-align: center;
+  margin-top: 22px;
+}
+
+.link-cadastro {
+  color: rgba(255, 255, 255, 0.40);
+  font-size: 14px;
+  margin: 0 0 20px;
+}
+
+.link-cadastro a {
+  color: #D4722A;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tcc-footer {
+  text-align: center;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.18);
+  font-size: 12px;
 }
