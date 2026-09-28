@@ -17,25 +17,25 @@
     </div>
 
     <nav class="nav-menu">
-      <a href="/home" class="nav-item">
+      <a routerLink="/home" class="nav-item">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
         </span> Início
       </a>
 
-      <a routerLink="/meus-pets" class="nav-item">
+      <a routerLink="/meus-pets" class="nav-item active">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" /><path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
         </span> Meus Pets
       </a>
 
-      <a routerLink="matriculas" class="nav-item">
+      <a routerLink="/matriculas" class="nav-item">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
         </span> Matrículas
       </a>
 
-      <a href="#" class="nav-item">
+      <a routerLink="/rotina" class="nav-item">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
         </span> Rotina do Pet
@@ -44,8 +44,8 @@
 
     <div class="user-rodape">
       <div class="user-avatar">{{ nomeCliente.charAt(0) }}</div>
-      <div class="user-name">{{ nomeCliente }}</div>
-      <div class="logout-icon" (click)="logout()">↩</div>
+      <span class="user-name">{{ nomeCliente }}</span>
+      <span class="logout-icon" (click)="logout()">↩</span>
     </div>
   </aside>
 
@@ -54,23 +54,63 @@
       <h1>Meus Pets</h1>
       <div class="header-right">
         <span class="current-date">{{ dataAtual }}</span>
-        <div class="notification-badge">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8C827A" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
-          <span class="badge-count">2</span>
+
+        <div class="notification-wrapper">
+          <div class="notification-badge" (click)="toggleNotificacoes()">
+            <span>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8C827A" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+            </span>
+            @if (notificacoesNaoLidas > 0) {
+              <span class="badge-count">{{ notificacoesNaoLidas }}</span>
+            }
+          </div>
+
+          @if (mostrarNotificacoes) {
+            <div class="notificacoes-dropdown">
+              <div class="notificacoes-header">
+                <h4>Notificações</h4>
+                @if (notificacoesNaoLidas > 0) {
+                  <span class="marcar-lidas" (click)="marcarTodasComoLidas()">Marcar lidas</span>
+                }
+              </div>
+              <ul class="notificacoes-list">
+                @for (notificacao of notificacoes; track notificacao.id) {
+                  <li [class.nao-lida]="!notificacao.lida" (click)="clicarNotificacao(notificacao)">
+                    <div class="notificacao-icone">
+                      @if (notificacao.tipo === 'agendamento') { 📅 }
+                      @else { 📋 }
+                    </div>
+                    <div class="notificacao-conteudo">
+                      <p>{{ notificacao.texto }}</p>
+                      <span>{{ notificacao.tempo }}</span>
+                    </div>
+                    @if (!notificacao.lida) {
+                      <div class="ponto-nao-lida"></div>
+                    }
+                  </li>
+                } @empty {
+                  <li class="vazio">
+                    <p>Tudo tranquilo por aqui! ✨</p>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
         </div>
-        <span class="role-badge">Tutor</span>
+        <div class="role-badge">Tutor</div>
       </div>
     </header>
 
     <div class="page-header">
-      <p>Clique em um pet para ver detalhes de saúde</p>
+      <p>Clique em um pet para ver detalhes de saúde e perfil</p>
+      <button class="btn btn-primary" (click)="abrirCadastroPet()">+ Novo Pet</button>
     </div>
 
     <div class="pets-grid-large">
       @for (pet of meusPets; track pet.id) {
-        <div class="pet-card-large">
+        <div class="pet-card-large" (click)="abrirPerfilPet(pet.id)">
           <div class="pet-image-container">
-            <img [src]="'https://images.unsplash.com/photo-' + pet.foto + '?w=400&h=200&fit=crop&auto=format'" alt="Foto do Pet">
+            <img [src]="getImagemCard(pet.foto)" alt="Foto do Pet">
             @if (pet.vacinado) {
               <span class="badge-vacinado">✓ Vacinado</span>
             }
@@ -79,6 +119,10 @@
             <h3>{{ pet.nome }}</h3>
             <p>{{ pet.raca }} · {{ pet.idade }} anos</p>
           </div>
+        </div>
+      } @empty {
+        <div class="empty-state">
+          <p>Nenhum pet cadastrado no momento.</p>
         </div>
       }
     </div>

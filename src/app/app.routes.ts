@@ -9,6 +9,7 @@ import { MatriculasComponent } from './pages/matriculas/matriculas';
 import { Rotina } from './pages/rotina/rotina';
 import { PainelAdmin } from './pages/painel-admin/painel-admin';
 import { EsqueciSenha } from './pages/esqueci-senha/esqueci-senha';
+import { PetDetalhesComponent } from './pages/pet-detalhes/pet-detalhes';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,16 @@ export const routes: Routes = [
   {
     path:'meus-pets',
     component: MeusPets
+  },
+
+  {
+  path: 'meus-pets/novo',
+    component: PetDetalhesComponent
+  },
+
+  {
+    path: 'meus-pets/detalhes/:id',
+    component: PetDetalhesComponent
   },
 
   {
