@@ -13,11 +13,19 @@ export class MatriculaService {
 
   criarMatricula(dto: MatriculaRequestDto): Observable<any> {
     const token = localStorage.getItem('token');
-
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
     return this.http.post<any>(this.apiUrl, dto, { headers });
+  }
+
+  buscarPorClienteId(clienteId: number): Observable<any[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any[]>(`${this.apiUrl}/cliente/${clienteId}`, { headers });
   }
 }

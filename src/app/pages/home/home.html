@@ -54,11 +54,48 @@
       <h1>Início</h1>
       <div class="header-right">
         <span class="current-date">{{ dataAtual }}</span>
-        <div class="notification-badge">
-          <span>
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8C827A" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
-          </span>
-          <span class="badge-count">2</span>
+
+        <div class="notification-wrapper">
+          <div class="notification-badge" (click)="toggleNotificacoes()">
+            <span>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8C827A" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+            </span>
+            @if (notificacoesNaoLidas > 0) {
+              <span class="badge-count">{{ notificacoesNaoLidas }}</span>
+            }
+          </div>
+
+          @if (mostrarNotificacoes) {
+            <div class="notificacoes-dropdown">
+              <div class="notificacoes-header">
+                <h4>Notificações</h4>
+                @if (notificacoesNaoLidas > 0) {
+                  <span class="marcar-lidas" (click)="marcarTodasComoLidas()">Marcar lidas</span>
+                }
+              </div>
+              <ul class="notificacoes-list">
+                @for (notificacao of notificacoes; track notificacao.id) {
+                  <li [class.nao-lida]="!notificacao.lida" (click)="clicarNotificacao(notificacao)">
+                    <div class="notificacao-icone">
+                      @if (notificacao.tipo === 'agendamento') { 📅 }
+                      @else { 📋 }
+                    </div>
+                    <div class="notificacao-conteudo">
+                      <p>{{ notificacao.texto }}</p>
+                      <span>{{ notificacao.tempo }}</span>
+                    </div>
+                    @if (!notificacao.lida) {
+                      <div class="ponto-nao-lida"></div>
+                    }
+                  </li>
+                } @empty {
+                  <li class="vazio">
+                    <p>Tudo tranquilo por aqui! ✨</p>
+                  </li>
+                }
+              </ul>
+            </div>
+          }
         </div>
         <div class="role-badge">Tutor</div>
       </div>
@@ -67,10 +104,12 @@
     <section class="welcome-banner">
       <div class="banner-info">
         <h2>Olá, {{ nomeCliente }}! 👋</h2>
-        <p>Plano ativo: <strong>Mensal</strong> · Válido até 31/07/2026</p>
+        @if (planoAtivo !== 'Nenhum') {
+        <p>Plano ativo: <strong>{{ planoAtivo }}</strong> · Válido até {{ validadePlano }}</p>
+      }
         <div class="banner-actions">
-          <button class="btn btn-primary">+ Agendar</button>
-          <button class="btn btn-secondary">Ver Rotina</button>
+          <button class="btn btn-primary" (click)="irParaAgendamento()">+ Agendar</button>
+          <button class="btn btn-secondary" (click)="irParaRotina()">Ver Rotina</button>
         </div>
       </div>
     </section>
@@ -84,7 +123,7 @@
         <div class="pet-list">
           @for (pet of meusPets; track pet.id) {
           <div class="pet-item">
-            <img [src] = "'https://images.unsplash.com/photo-' + pet.foto + '?w=44&h=44&fit=crop&auto=format'" class="pet-avatar-img">
+            <img [src]="getImagemCard(pet.foto)" alt="Foto do Pet" class="pet-avatar-img">
             <div class="pet-details">
               <strong>{{ pet.nome }}</strong>
               <span>{{ pet.raca }}</span>
