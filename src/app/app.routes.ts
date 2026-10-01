@@ -6,7 +6,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro';
 import { Home } from './pages/home/home';
 import { MeusPets } from './pages/meus-pets/meus-pets';
 import { MatriculasComponent } from './pages/matriculas/matriculas';
-import { Rotina } from './pages/rotina/rotina';
+import { RotinaComponent } from './pages/rotina/rotina';
 import { PainelAdmin } from './pages/painel-admin/painel-admin';
 import { EsqueciSenha } from './pages/esqueci-senha/esqueci-senha';
 import { PetDetalhesComponent } from './pages/pet-detalhes/pet-detalhes';
@@ -54,7 +54,7 @@ export const routes: Routes = [
 
   {
     path: 'rotina',
-    component: Rotina
+    component: RotinaComponent
   },
 
   {
