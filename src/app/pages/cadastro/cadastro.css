@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-
 .login-wrapper {
   min-height: 100vh;
   background-color: #1C1208;
@@ -83,7 +81,8 @@ label {
 
 input[type="email"],
 input[type="password"],
-input[type="text"] {
+input[type="text"],
+input[type="tel"] {
   border-radius: 8px;
   padding: 11px 16px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -99,7 +98,8 @@ input[type="text"] {
 
 input[type="email"]:focus,
 input[type="password"]:focus,
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="tel"]:focus {
   border-color: #B85A10;
   background-color: rgba(255, 255, 255, 0.1);
 }
@@ -183,4 +183,59 @@ button {
   margin-top: 24px;
   color: rgba(255, 255, 255, 0.18);
   font-size: 12px;
+}
+
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.icon-eye {
+  position: absolute;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: all 0.2s;
+}
+
+.icon-eye:hover svg {
+  stroke: rgba(255,255,255,0.8);
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    padding: 24px 0;
+    min-height: 100dvh;
+  }
+
+  .card-login {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .header-section h1 {
+    font-size: 26px;
+  }
+}
+
+.brand-icon {
+  margin-bottom: 10px;
+}
+
+.brand-name {
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #D4722A;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
 }

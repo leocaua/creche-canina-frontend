@@ -10,6 +10,12 @@ import { RotinaComponent } from './pages/rotina/rotina';
 import { PainelAdmin } from './pages/painel-admin/painel-admin';
 import { EsqueciSenha } from './pages/esqueci-senha/esqueci-senha';
 import { PetDetalhesComponent } from './pages/pet-detalhes/pet-detalhes';
+import { AgendaComponent } from './pages/agenda/agenda';
+import { PetsAdminComponent } from './pages/pets-admin/pets-admin';
+import { TutoresComponent } from './pages/tutores/tutores';
+import { NovoAgendamentoComponent } from './pages/novo-agendamento/novo-agendamento';
+import { RotinasAdminComponent } from './pages/rotinas-admin/rotinas-admin';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -29,37 +35,74 @@ export const routes: Routes = [
 
   {
     path: 'home',
-    component: Home
+    component: Home,
+    canActivate: [authGuard]
   },
 
   {
     path:'meus-pets',
-    component: MeusPets
+    component: MeusPets,
+    canActivate: [authGuard]
   },
 
   {
-  path: 'meus-pets/novo',
-    component: PetDetalhesComponent
+    path: 'meus-pets/novo',
+    component: PetDetalhesComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'meus-pets/detalhes/:id',
-    component: PetDetalhesComponent
+    component: PetDetalhesComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'matriculas',
-    component: MatriculasComponent
+    component: MatriculasComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'rotina',
-    component: RotinaComponent
+    component: RotinaComponent,
+    canActivate: [authGuard]
   },
 
   {
     path: 'painel-admin',
-    component: PainelAdmin
+    component: PainelAdmin,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'agenda',
+    component: AgendaComponent,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'pets-admin',
+    component: PetsAdminComponent,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'tutores',
+    component: TutoresComponent,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'novo-agendamento',
+    component: NovoAgendamentoComponent,
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'rotinas-admin',
+    component: RotinasAdminComponent,
+    canActivate: [authGuard]
   },
 
   {

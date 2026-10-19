@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,21 @@ export class Login implements OnInit {
   senha = '';
   lembrarMe = false;
 
+  mostrarSenha = false;
+
   ngOnInit(): void {
-    const emailSalvo = localStorage.getItem('emailLembrado');
-    if (emailSalvo) {
-      this.email = emailSalvo;
-      this.lembrarMe = true;
+    if (typeof window !== 'undefined') {
+      const emailSalvo = localStorage.getItem('emailLembrado');
+
+      if (emailSalvo) {
+        this.email = emailSalvo;
+        this.lembrarMe = true;
+      }
     }
+  }
+
+  toggleSenha() {
+    this.mostrarSenha = !this.mostrarSenha;
   }
 
   fazerLogin() {
@@ -31,6 +41,8 @@ export class Login implements OnInit {
       email: this.email,
       senha: this.senha
     };
+
+    const emailDaEmpresa = 'admin@petday.com.br';
 
     this.authService.fazerLoginApi(pacote).subscribe({
       next: (resposta) => {
@@ -42,10 +54,21 @@ export class Login implements OnInit {
           localStorage.removeItem('emailLembrado');
         }
 
-        this.router.navigate(['/home']);
+        if (this.email === emailDaEmpresa) {
+          localStorage.setItem('perfil', 'ADMIN');
+          this.router.navigate(['/painel-admin']);
+        } else {
+          localStorage.setItem('perfil', 'TUTOR');
+          this.router.navigate(['/home']);
+        }
       },
       error: (erro) => {
-        alert('Erro ao tentar logar. Verifique o console ou ligue o backend!');
+        Swal.fire({
+          title: 'Acesso Negado',
+          text: 'E-mail ou senha incorretos. Tente novamente.',
+          icon: 'error',
+          confirmButtonColor: '#B85A10'
+        });
         console.error('Detalhes do erro:', erro);
       }
     });
