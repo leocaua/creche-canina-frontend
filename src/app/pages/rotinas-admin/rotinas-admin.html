@@ -1,0 +1,223 @@
+<div class="dashboard-container" (click)="mostrarNotificacoes = false">
+  <aside class="barra-lateral" [class.menu-aberto]="menuAberto">
+    <div class="marca">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="marca-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" /><path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
+        </div>
+        <div class="marca-text">
+          <h2>PetDay</h2>
+          <span>ADMINISTRADOR</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn-menu-mobile"
+        (click)="menuAberto = !menuAberto; $event.stopPropagation()" aria-label="Abrir menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/painel-admin" routerLinkActive="active" class="nav-item" (click)="menuAberto = false">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        </span> Painel
+      </a>
+
+      <a routerLink="/agenda" routerLinkActive="active" class="nav-item" (click)="menuAberto = false">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </span> Agenda
+      </a>
+
+      <a routerLink="/pets-admin" routerLinkActive="active" class="nav-item" (click)="menuAberto = false">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        </span> Pets
+      </a>
+
+      <a routerLink="/tutores" routerLinkActive="active" class="nav-item" (click)="menuAberto = false">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </span> Tutores
+      </a>
+
+      <a routerLink="/rotinas-admin" routerLinkActive="active" class="nav-item" (click)="menuAberto = false">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </span> Rotinas
+      </a>
+
+      <a routerLink="/novo-agendamento" routerLinkActive="active" class="nav-item" (click)="menuAberto = false" style="margin-top: 16px;">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        </span> N. Agendamento
+      </a>
+    </nav>
+
+    <div class="vagas-widget">
+      <div class="vagas-header">
+        <span>Vagas hoje</span>
+        <strong>{{ vagasOcupadasHoje }} / {{ capacidadeTotalGeral }}</strong>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill orange-fill" [style.width.%]="porcentagemVagasHoje"></div>
+      </div>
+    </div>
+
+    <div class="user-rodape" (click)="logout()" style="cursor: pointer;" title="Sair do sistema">
+      <div class="user-avatar">A</div>
+      <div class="user-name">Administrador</div>
+      <div class="logout-icon">↩</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-header">
+      <h1>Diário de Atividades</h1>
+      <div class="header-right">
+        <span class="current-date">{{ dataAtual }}</span>
+
+        <div class="notification-wrapper" style="position: relative;">
+          <div class="notification-badge"
+            (click)="toggleNotificacoes(); $event.stopPropagation()">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#8C827A" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+            @if (notificacoesNaoLidas > 0) {
+              <span class="badge-count">{{ notificacoesNaoLidas }}</span>
+            }
+          </div>
+
+          @if (mostrarNotificacoes) {
+            <div class="notificacoes-dropdown"
+              (click)="$event.stopPropagation()">
+              <div class="notificacoes-header">
+                <h4>Notificações do Sistema</h4>
+                <div class="acoes-notificacao">
+                  @if (notificacoesNaoLidas > 0) {
+                    <span class="marcar-lidas"
+                      (click)="marcarTodasComoLidas()">Marcar lidas</span>
+                  }
+                  @if (notificacoes.length > 0) {
+                    <span class="limpar-notificacoes"
+                      (click)="limparNotificacoes()">Limpar tudo</span>
+                  }
+                </div>
+              </div>
+              <ul class="notificacoes-list">
+                @for (notificacao of notificacoes; track notificacao.id) {
+                  <li [class.nao-lida]="!notificacao.lida"
+                    (click)="clicarNotificacao(notificacao)">
+                    <div class="notificacao-icone" style="color: #D4722A;">
+
+                      @if (notificacao.tipo === 'MATRICULA' || notificacao.tipo === 'PAGAMENTO') {
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
+                      } @else if (notificacao.tipo === 'CHECKIN' || notificacao.tipo === 'AUSENCIA') {
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
+                      } @else {
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+                      }
+                    </div>
+                    <div class="notificacao-conteudo">
+                      <p>{{ notificacao.texto }}</p>
+                      <span>{{ notificacao.tempo }}</span>
+                    </div>
+                    @if (!notificacao.lida) {
+                      <div class="ponto-nao-lida"></div>
+                    }
+                  </li>
+                } @empty {
+                  <li class="vazio">Nenhuma atividade recente.</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+        <span class="role-badge">Admin</span>
+      </div>
+    </header>
+
+    <div class="page-title-section">
+      <div>
+        <h3 class="page-title">Acompanhamento Diário</h3>
+        <p class="page-subtitle">Selecione o pet presente na creche para registrar atividades e observações.</p>
+      </div>
+    </div>
+
+    <div class="rotinas-layout">
+
+      <div class="pets-sidebar">
+        <h4 class="section-title">Pets de Hoje</h4>
+        <div class="pets-list">
+          @for (pet of petsHoje; track pet.nome + '-' + pet.idMatricula) {
+            <div class="pet-card"
+              [class.active]="petSelecionado === pet"
+              (click)="selecionarPet(pet)">
+              <div class="pet-info">
+                <strong>{{ pet.nome }}</strong>
+                <span>{{ pet.tutor }}</span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="rotinas-main">
+        @if (!petSelecionado) {
+          <div class="estado-vazio">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E8DDD0" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            <p>Selecione um pet ao lado para iniciar o diário.</p>
+          </div>
+        } @else {
+
+          <div class="form-card">
+            <h4 class="section-title">Novo Registro - {{ petSelecionado.nome }}</h4>
+            <div class="form-grid-rotina">
+              <div class="form-group-rotina" style="flex: 0 0 120px;">
+                <label>Horário</label>
+                <input type="time" class="input-padrao"
+                  [(ngModel)]="novaRotina.horario">
+              </div>
+              <div class="form-group-rotina" style="flex: 1;">
+                <label>Título da Atividade</label>
+                <input type="text" class="input-padrao" placeholder="Ex: Adestramento e Socialização"
+                  [(ngModel)]="novaRotina.titulo">
+              </div>
+            </div>
+            <div class="form-group-rotina" style="margin-top: 16px;">
+              <label>Relatório Detalhado</label>
+              <textarea class="input-padrao" rows="3" placeholder="Descreva como foi o comportamento do pet..."
+                [(ngModel)]="novaRotina.detalhes"></textarea>
+            </div>
+            <div style="margin-top: 16px; text-align: right;">
+              <button class="btn-primario"
+                (click)="salvarRotina()"
+                  [disabled]="!novaRotina.horario || !novaRotina.titulo || !novaRotina.detalhes">
+                Salvar Registro
+              </button>
+            </div>
+          </div>
+
+          <div class="timeline-container">
+            <h4 class="section-title">Registros de Hoje</h4>
+            @if (petSelecionado.rotinas.length === 0) {
+              <p class="alerta-texto" style="color: #8C827A; padding: 20px;">Nenhuma rotina registrada ainda.</p>
+            }
+
+            <div class="timeline">
+              @for (rotina of petSelecionado.rotinas; track rotina) {
+                <div class="timeline-item">
+                  <div class="timeline-time">{{ rotina.horario }}</div>
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <p>{{ rotina.descricao.split('|||')[1] || rotina.descricao }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </main>
+</div>
