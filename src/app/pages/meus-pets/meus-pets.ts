@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Cliente } from '../../services/cliente';
 import { Pet } from '../../services/pet';
@@ -11,14 +11,15 @@ import { NotificacaoService } from '../../services/notificacao';
   templateUrl: './meus-pets.html',
   styleUrl: './meus-pets.css'
 })
-
 export class MeusPets implements OnInit {
+  menuAberto: boolean = false;
   nomeCliente: string = 'Carregando...';
   meusPets: any[] = [];
   dataAtual: string = '';
 
   mostrarNotificacoes: boolean = false;
   notificacoes: any[] = [];
+  clienteIdLogado: number = 0;
 
   constructor(
     private clienteService: Cliente,
@@ -33,6 +34,7 @@ export class MeusPets implements OnInit {
       month: 'short',
       year: 'numeric'
     };
+
     this.dataAtual = new Date().toLocaleDateString('pt-BR', opcoes);
   }
 
@@ -49,8 +51,11 @@ export class MeusPets implements OnInit {
       this.clienteService.buscarTodosClientes().subscribe({
         next: (clientes: any) => {
           const clienteEncontrado = clientes.find((c: any) => c.email === emailLogado);
+
           if (clienteEncontrado) {
+            this.clienteIdLogado = clienteEncontrado.id;
             this.nomeCliente = clienteEncontrado.nome;
+
             this.carregarMeusPets(clienteEncontrado.id);
             this.carregarNotificacoes(clienteEncontrado.id);
           } else {
@@ -94,6 +99,11 @@ export class MeusPets implements OnInit {
     this.mostrarNotificacoes = !this.mostrarNotificacoes;
   }
 
+  @HostListener('document:click')
+  fecharNotificacoesAoClicarFora() {
+    this.mostrarNotificacoes = false;
+  }
+
   clicarNotificacao(notificacao: any) {
     if (!notificacao.lida) {
       this.notificacaoService.marcarComoLida(notificacao.id).subscribe({
@@ -105,6 +115,7 @@ export class MeusPets implements OnInit {
     }
 
     this.mostrarNotificacoes = false;
+
     if (notificacao.tipo === 'agendamento') {
       this.router.navigate(['/matriculas']);
     } else if (notificacao.tipo === 'rotina') {
@@ -114,6 +125,7 @@ export class MeusPets implements OnInit {
 
   marcarTodasComoLidas() {
     const naoLidas = this.notificacoes.filter(n => !n.lida);
+
     naoLidas.forEach(n => {
       this.notificacaoService.marcarComoLida(n.id).subscribe({
         next: () => n.lida = true
@@ -121,13 +133,35 @@ export class MeusPets implements OnInit {
     });
   }
 
-  getImagemCard(foto: string): string {
-  if (!foto) return 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=200&fit=crop';
-  if (foto.startsWith('data:image')) {
-    return foto;
+  limparNotificacoes() {
+    if (this.clienteIdLogado > 0) {
+      this.notificacaoService.limparDoCliente(this.clienteIdLogado).subscribe({
+        next: () => {
+          this.notificacoes = [];
+          this.cdr.detectChanges();
+        },
+        error: (erro: any) => console.error('Erro ao limpar notificações:', erro)
+      });
+    }
   }
-  return `https://images.unsplash.com/photo-${foto}?w=400&h=200&fit=crop`;
-}
+
+  getImagemCard(foto: string): string {
+    if (!foto)
+      return 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=200&fit=crop';
+
+    if (foto.startsWith('data:image') || foto.startsWith('http')) {
+      return foto;
+    }
+
+    if (foto.length > 100) {
+      return 'data:image/jpeg;base64,' + foto;
+    }
+    return `https://images.unsplash.com/photo-${foto}?w=400&h=200&fit=crop`;
+  }
+
+  lidarErroImagem(event: any) {
+    event.target.src = 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop';
+  }
 
   abrirPerfilPet(petId: number) {
     this.router.navigate([`/meus-pets/detalhes`, petId]);
@@ -139,7 +173,12 @@ export class MeusPets implements OnInit {
 
   logout() {
     if (typeof window !== 'undefined') {
+      const emailLembrado = localStorage.getItem('emailLembrado');
       localStorage.clear();
+      
+      if (emailLembrado) {
+        localStorage.setItem('emailLembrado', emailLembrado);
+      }
       this.router.navigate(['/login']);
     }
   }

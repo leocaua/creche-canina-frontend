@@ -16,7 +16,7 @@ export class MatriculaService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
+    
     return this.http.post<any>(this.apiUrl, dto, { headers });
   }
 

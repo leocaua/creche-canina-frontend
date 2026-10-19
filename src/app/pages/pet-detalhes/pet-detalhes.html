@@ -1,33 +1,38 @@
 <div class="dashboard-container">
-  <aside class="barra-lateral">
+  <aside class="barra-lateral" [class.menu-aberto]="menuAberto">
     <div class="marca">
-      <div class="marca-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-          <ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" />
-          <path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" />
-        </svg>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div class="marca-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" /><path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
       </div>
       <div class="marca-text">
         <h2>PetDay</h2>
         <span>PORTAL TUTOR</span>
       </div>
+      </div>
+
+      <button type="button" class="btn-menu-mobile" (click)="menuAberto = !menuAberto; $event.stopPropagation()" aria-label="Abrir menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
     </div>
 
     <nav class="nav-menu">
-      <a routerLink="/home" class="nav-item">
+      <a routerLink="/home" class="nav-item" (click)="menuAberto = false">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
         </span> Início</a>
-      <a routerLink="/meus-pets" class="nav-item active">
+
+      <a routerLink="/meus-pets" class="nav-item active" (click)="menuAberto = false">
         <span class="icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" />
-            <path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" /><path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
           </span> Meus Pets</a>
-      <a routerLink="/matriculas" class="nav-item">
+
+      <a routerLink="/matriculas" class="nav-item" (click)="menuAberto = false">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
           </span> Matrículas</a>
-      <a routerLink="/rotina" class="nav-item">
+
+      <a routerLink="/rotina" class="nav-item" (click)="menuAberto = false">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" /></svg>
         </span> Rotina do Pet</a>
@@ -53,32 +58,34 @@
         <button class="btn-primary" (click)="salvarPet()">Cadastrar Pet</button>
       </div>
 
-      @if (mensagemErro) {
-        <div class="alert-error-box">
-          <span>⚠️ {{ mensagemErro }}</span>
-        </div>
-      }
-
       <div class="white-card cadastro-container">
         <div class="cadastro-photo-area">
           @if (pet.foto && pet.foto !== '1587300003388-59208cc962cb') {
             <img [src]="getImagemPet()" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid #D4722A; margin-bottom: 8px;">
           } @else {
-            <div class="photo-placeholder-light">🐶</div>
+            <div class="photo-placeholder-light">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="#D4722A"><ellipse cx="5.5" cy="5.5" rx="1.7" ry="2.4" /><ellipse cx="10" cy="3.5" rx="1.7" ry="2.4" /><ellipse cx="14.5" cy="4" rx="1.7" ry="2.4" /><ellipse cx="18.5" cy="6.5" rx="1.7" ry="2.4" /><path d="M12 10c-3.5 0-7 2.8-7 6.2 0 2.4 1.4 4.3 3.8 4.3 1.1 0 1.9-.5 3.2-1.1 1.3.6 2.1 1.1 3.2 1.1 2.4 0 3.8-1.9 3.8-4.3C19 12.8 15.5 10 12 10z" /></svg>
+            </div>
           }
-          <input type="file" #fileInputCadastro (change)="onFileSelected($event)" style="display: none;" accept="image/*">
-          <button type="button" class="btn-upload-light" (click)="fileInputCadastro.click()">Adicionar Imagem</button>
+          <input type="file" #fileInputCadastro
+            (change)="onFileSelected($event)" style="display: none;" accept="image/*">
+          <button type="button" class="btn-upload-light"
+            (click)="fileInputCadastro.click()">Adicionar Imagem</button>
         </div>
 
         <div class="form-sections-grid">
           <div class="form-section">
             <h3 class="section-title">Informações Físicas</h3>
             <div class="input-group">
-              <label class="light-label">NOME</label>
+              <label class="light-label">NOME
+                <span style="color: #D4722A;">*</span>
+              </label>
               <input type="text" [(ngModel)]="pet.nome" placeholder="Ex: Thor" class="light-input">
             </div>
             <div class="input-group">
-              <label class="light-label">RAÇA</label>
+              <label class="light-label">RAÇA
+                <span style="color: #D4722A;">*</span>
+              </label>
               <input type="text" [(ngModel)]="pet.raca" placeholder="Ex: Golden Retriever" class="light-input">
             </div>
             <div class="input-group">
@@ -87,7 +94,9 @@
             </div>
             <div class="input-grid-2">
               <div class="input-group">
-                <label class="light-label">SEXO</label>
+                <label class="light-label">SEXO
+                  <span style="color: #D4722A;">*</span>
+                </label>
                 <select [(ngModel)]="pet.sexo" class="light-input">
                   <option value="M">Macho</option>
                   <option value="F">Fêmea</option>
@@ -100,9 +109,12 @@
             </div>
             <div class="input-grid-2">
               <div class="input-group">
-                <label class="light-label">PORTE</label>
+                <label class="light-label">PORTE
+                  <span style="color: #D4722A;">*</span>
+                </label>
                 <select [(ngModel)]="pet.porte" class="light-input">
-                  <option value="P">Pequeno</option><option value="M">Médio</option>
+                  <option value="P">Pequeno</option>
+                  <option value="M">Médio</option>
                   <option value="G">Grande</option>
                 </select>
               </div>
@@ -116,11 +128,14 @@
             <h3 class="section-title">Status e Saúde</h3>
             <div class="input-grid-2">
               <div class="input-group">
-                <label class="light-label">VACINADO</label>
+                <label class="light-label">VACINADO
+                  <span style="color: #D4722A;">*</span>
+                </label>
                 <select [(ngModel)]="pet.vacinado" class="light-input">
                   <option [ngValue]="true">Sim</option>
                   <option [ngValue]="false">Não</option>
                 </select>
+                <span style="font-size: 10px; color: #D4722A; margin-top: 4px; display: block; font-weight: 600;">*Obrigatório para frequentar a creche</span>
               </div>
               <div class="input-group">
                 <label class="light-label">CASTRADO</label>
@@ -129,6 +144,14 @@
                   <option [ngValue]="false">Não</option>
                 </select>
               </div>
+            </div>
+
+            <div style="margin-top: 16px; background-color: #FDF3EA; border: 1px solid #D4722A; border-radius: 10px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4722A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #8C4A15; font-family: 'Plus Jakarta Sans', sans-serif;">
+                <strong>Importante:</strong> No primeiro dia de creche, é obrigatório apresentar a
+                <strong>carteira de vacinação</strong> física ou digital na recepção para conferência e validação.
+              </p>
             </div>
           </div>
         </div>
@@ -145,31 +168,40 @@
         <div class="header-actions">
           @if (abaAtiva === 'perfil') {
             @if (modoEdicao) {
-              <button class="btn-secondary-dark" (click)="cancelarEdicao()">Cancelar</button>
-              <button class="btn-primary" (click)="salvarPet()">Salvar</button>
+              <button class="btn-secondary-dark"
+                (click)="cancelarEdicao()">Cancelar</button>
+              <button class="btn-primary"
+                (click)="salvarPet()">Salvar</button>
             } @else {
-              <button class="btn-primary edit-btn" (click)="habilitarEdicao()">Editar</button>
+              <button class="btn-primary edit-btn"
+                (click)="habilitarEdicao()">Editar</button>
             }
           }
         </div>
       </div>
 
       <div class="tabs-header-petattend">
-        <div class="tab" [class.active]="abaAtiva === 'perfil'" (click)="trocarAba('perfil')">Perfil</div>
-        <div class="tab" [class.active]="abaAtiva === 'atividades'" (click)="trocarAba('atividades')">Atividades</div>
-        <div class="tab" [class.active]="abaAtiva === 'matriculas'" (click)="trocarAba('matriculas')">Matrículas</div>
+        <div class="tab"
+          [class.active]="abaAtiva === 'perfil'"
+          (click)="trocarAba('perfil')">Perfil</div>
+        <div class="tab"
+          [class.active]="abaAtiva === 'matriculas'"
+          (click)="trocarAba('matriculas')">Matrículas</div>
       </div>
 
       <div class="pet-profile-content">
         @if (abaAtiva === 'perfil') {
           <div class="perfil-layout">
             <div class="dark-card profile-sidebar">
-              <img [src]="getImagemPet()" alt="Pet">
+              <img [src]="getImagemPet()" (error)="lidarErroImagem($event)" alt="Pet">
 
               @if (modoEdicao) {
-                <input type="file" #fileInputPerfil (change)="onFileSelected($event)" style="display: none;" accept="image/*">
-                <button type="button" class="btn-secondary-dark" (click)="fileInputPerfil.click()" style="margin-bottom: 16px; font-size: 11px; padding: 6px 10px; width: 100%;">Alterar Imagem</button>
-                <input type="text" [(ngModel)]="pet.nome" class="dark-input-sm" style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">
+                <input type="file" #fileInputPerfil
+                  (change)="onFileSelected($event)" style="display: none;" accept="image/*">
+                <button type="button" class="btn-secondary-dark"
+                  (click)="fileInputPerfil.click()" style="margin-bottom: 16px; font-size: 11px; padding: 6px 10px; width: 100%;">Alterar Imagem</button>
+                <input type="text"
+                  [(ngModel)]="pet.nome" class="dark-input-sm" style="font-size: 18px; font-weight: bold; margin-bottom: 8px;">
               } @else {
                 <h2 style="font-size: 20px; font-family: 'Fraunces', serif; margin-bottom: 4px; color: #FFFFFF;">{{ pet.nome }}</h2>
               }
@@ -183,36 +215,44 @@
                 </div>
 
                 <div class="detail-item">
-                  <label class="dark-label">RAÇA</label>
+                  <label class="dark-label">RAÇA
+                    <span style="color: #D4722A;">*</span>
+                  </label>
                   @if(modoEdicao) {
                     <input type="text" [(ngModel)]="pet.raca" class="dark-input-sm">
                   } @else {
-                    <span>{{ pet.raca }}</span> }
+                    <span>{{ pet.raca }}</span>
+                  }
                 </div>
 
                 <div class="detail-row">
                   <div class="detail-item">
-                    <label class="dark-label">SEXO</label>
+                    <label class="dark-label">SEXO
+                      <span style="color: #D4722A;">*</span>
+                    </label>
                     @if(modoEdicao) {
                       <select [(ngModel)]="pet.sexo" class="dark-input-sm">
                         <option value="M">Macho</option>
                         <option value="F">Fêmea</option>
                       </select>
                     } @else {
-                      <span>{{ pet.sexo === 'M' ? 'Macho' : 'Fêmea' }}</span> }
+                      <span>{{ (pet.sexo === 'M' || pet.sexo === 'Macho') ? 'Macho' : 'Fêmea' }}</span> }
                   </div>
                   <div class="detail-item">
                     <label class="dark-label">IDADE</label>
                     @if(modoEdicao) {
                       <input type="number" [(ngModel)]="pet.idade" class="dark-input-sm">
                     } @else {
-                        <span>{{ pet.idade || '--' }} anos</span> }
+                        <span>{{ pet.idade || '--' }} anos</span>
+                      }
                   </div>
                 </div>
 
                 <div class="detail-row">
                   <div class="detail-item">
-                    <label class="dark-label">PORTE</label>
+                    <label class="dark-label">PORTE
+                      <span style="color: #D4722A;">*</span>
+                    </label>
 
                     @if(modoEdicao) {
                       <select [(ngModel)]="pet.porte" class="dark-input-sm">
@@ -221,7 +261,8 @@
                         <option value="G">Grande</option>
                       </select>
                     } @else {
-                      <span>{{ pet.porte === 'G' ? 'Grande' : (pet.porte === 'M' ? 'Médio' : 'Pequeno') }}</span> }
+                      <span>{{ pet.porte === 'G' ? 'Grande' : (pet.porte === 'M' ? 'Médio' : 'Pequeno') }}</span>
+                    }
                   </div>
                   <div class="detail-item">
                     <label class="dark-label">PESO (kg)</label>
@@ -245,7 +286,8 @@
                     @if(modoEdicao) {
                       <input type="text" [(ngModel)]="pet.cor" class="dark-input-sm">
                     } @else {
-                      <span>{{ pet.cor || 'Não informado' }}</span> }
+                      <span>{{ pet.cor || 'Não informado' }}</span>
+                    }
                   </div>
                   <div class="detail-item">
                     <label class="dark-label">CASTRADO</label>
@@ -256,7 +298,8 @@
                         <option [ngValue]="false">Não</option>
                       </select>
                     } @else {
-                      <span>{{ pet.castrado ? 'Sim' : 'Não' }}</span> }
+                      <span>{{ pet.castrado ? 'Sim' : 'Não' }}</span>
+                    }
                   </div>
                 </div>
               </div>
@@ -265,25 +308,22 @@
                 <div class="dark-card">
                   <h3>Saúde</h3>
                   <div class="detail-item mt-2">
-                    <label class="dark-label">VACINAS EM DIA</label>
+                    <label class="dark-label">VACINAS EM DIA
+                      <span style="color: #D4722A;">*</span>
+                    </label>
 
                     @if(modoEdicao) {
                       <select [(ngModel)]="pet.vacinado" class="dark-input-sm">
                         <option [ngValue]="true">Sim</option>
                         <option [ngValue]="false">Não</option>
                       </select>
+                      <span style="font-size: 10px; color: #D4722A; margin-top: 6px; display: block;">*Obrigatório para a creche</span>
                     } @else {
                       <span [class.text-green]="pet.vacinado">{{ pet.vacinado ? 'Sim' : 'Não' }}</span> }
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        }
-
-        @if (abaAtiva === 'atividades') {
-          <div class="dark-card">
-            <div style="text-align: center; padding: 40px; color: #8C827A;">Nenhuma atividade registrada para o pet.</div>
           </div>
         }
 

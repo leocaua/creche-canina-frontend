@@ -11,7 +11,6 @@ export class Cliente {
   constructor(private http: HttpClient) {}
 
   buscarClientePorId(id: number) {
-
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
